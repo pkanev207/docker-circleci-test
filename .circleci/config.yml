@@ -3,21 +3,33 @@ jobs:
   build:
     docker:
       - image: cimg/node:19.8.0
-
     # working_director: ~/repo
 
     steps:
       - checkout
+
       # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: npm install
+      - run:
+          name: Install npm dependencies
+          command: |
+            npm install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm test
+
+      - run:
+          name: Run tests
+          command: |
+            npm test
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+
       - run: echo "Say hello to YAML!"
