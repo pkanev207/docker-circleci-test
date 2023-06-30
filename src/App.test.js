@@ -17,6 +17,6 @@ test("should check circleCI", () => {
   expect(3).toBe(3);
 });
 
-// test("should return false", () => {
-//   expect(1).toBe(0);
-// });
+test("should return false", () => {
+  expect(1).toBe(0);
+});
