@@ -7,7 +7,7 @@ jobs:
     # working_director: ~/repo
     steps:
       - checkout
-      # Download and cache dependencies a
+      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -18,25 +18,5 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-  test:
-    docker:
-      - image: cimg/node:19.8.0
-    steps:
-      - attach_workspace:
-          at: .
-      - checkout
       - run: npm test
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-
-  deploy:
-    docker:
-      - image: cimg/node:19.8.0
-    steps:
       - run: echo "Say hello to YAML!"
