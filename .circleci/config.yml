@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  run_tests:
     docker:
       - image: cimg/node:19.8.0
     # working_director: ~/repo
@@ -28,8 +28,13 @@ jobs:
           command: |
             npm test
       - store_test_results:
-          path: "../../../src/App.test.js"
+          path: test-results
       - store_artifacts:
-          path: "../../frontend/src/App.test.js"
+          path: "./frontend/src/App.test.js"
 
       - run: echo "Say hello to YAML!"
+
+workflows:
+  build_test:
+    jobs:
+      - run_tests
