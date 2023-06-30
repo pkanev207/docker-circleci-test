@@ -30,6 +30,6 @@ jobs:
       - store_test_results:
           path: "./frontend/src/App.test.js"
       - store_artifacts:
-          path: App.test.js
+          path: "../../frontend/src/App.test.js"
 
       - run: echo "Say hello to YAML!"
