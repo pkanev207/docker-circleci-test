@@ -18,5 +18,25 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm test
-      - run: echo "Say hello to YAML!"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+    test:
+      docker:
+        - image: cimg/node:19.8.0
+      steps:
+        - attach_workspace:
+            at: .
+        - checkout
+        - run: npm test
+        - persist_to_workspace:
+            root: .
+            paths:
+              - .
+
+    deploy:
+      docker:
+        -image: cimg/node:19.8.0
+      steps:
+        - run: echo "Say hello to YAML!"
