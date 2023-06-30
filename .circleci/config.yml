@@ -28,7 +28,7 @@ jobs:
           command: |
             npm test
       - store_test_results:
-          path: "./frontend/src/App.test.js"
+          path: "../../src/App.test.js"
       - store_artifacts:
           path: "../../frontend/src/App.test.js"
 
