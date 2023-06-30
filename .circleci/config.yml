@@ -20,11 +20,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       # - run: npm test
       - run:
-          name: Run tests
-          command: |
-            npm test
+          name: Run tests with JUnit as reporter
+          command: jest --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/
       - store_test_results:
-          path: test-results
-      - store_artifacts:
-          path: test-results
+          path: ./reports/
+
       - run: echo "Say hello to YAML!"
