@@ -7,7 +7,7 @@ jobs:
     # working_director: ~/repo
     steps:
       - checkout
-      # Download and cache dependencies
+      # Download and cache dependencies a
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -40,6 +40,7 @@ jobs:
       - image: cimg/node:19.8.0
     steps:
       - run: echo "Say hello to YAML!"
+<<<<<<< HEAD
 
 workflows:
   build_test_deploy:
@@ -51,3 +52,5 @@ workflows:
       - deploy:
           requires:
             - test
+=======
+>>>>>>> 11a4125c544fe95c84d94874fe2b6b3acfc4a8d4
